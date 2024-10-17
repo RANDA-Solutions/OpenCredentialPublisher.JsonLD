@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+	<Configurations>Debug;Dev;Qa;Release</Configurations>
+    <LangVersion>9.0</LangVersion>
+    <Version>5.0.1</Version>
+  </PropertyGroup>
+</Project>

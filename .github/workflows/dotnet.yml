@@ -1,0 +1,23 @@
+name: Upload dotnet package
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '3.1.x' # SDK Version to use.
+          source-url: https://nuget.pkg.github.com/RANDA-Solutions/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.NUGET_TOKEN}}
+      - run: dotnet build --configuration Release OpenCredentialPublisher.JsonLD.csproj
+      - name: Create the package
+        run: dotnet pack --configuration Release OpenCredentialPublisher.JsonLD.csproj
+      - name: Publish the package to GPR
+        run: dotnet nuget push bin/Release/*.nupkg
