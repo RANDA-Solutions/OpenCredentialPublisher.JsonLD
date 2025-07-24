@@ -10,9 +10,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '3.1.x' # SDK Version to use.
+          dotnet-version: '6.x' # SDK Version to use.
           source-url: https://nuget.pkg.github.com/RANDA-Solutions/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_TOKEN}}
